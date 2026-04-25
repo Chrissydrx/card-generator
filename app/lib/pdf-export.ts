@@ -3,14 +3,17 @@ import html2canvas from "html2canvas-pro";
 
 const CARD_W_MM = 63;
 const CARD_H_MM = 88;
+const GAP_MM = 3;
 const A4_W_MM = 210;
 const A4_H_MM = 297;
 const COLS = 3;
 const ROWS = 3;
 const CARDS_PER_PAGE = COLS * ROWS;
 
-const MARGIN_X = (A4_W_MM - COLS * CARD_W_MM) / 2;
-const MARGIN_Y = (A4_H_MM - ROWS * CARD_H_MM) / 2;
+const GRID_W = COLS * CARD_W_MM + (COLS - 1) * GAP_MM;
+const GRID_H = ROWS * CARD_H_MM + (ROWS - 1) * GAP_MM;
+const MARGIN_X = (A4_W_MM - GRID_W) / 2;
+const MARGIN_Y = (A4_H_MM - GRID_H) / 2;
 
 const RENDER_SCALE = 3;
 
@@ -46,8 +49,8 @@ function buildPages(
       pdf.addImage(
         frontImages[startIdx + i],
         "PNG",
-        MARGIN_X + col * CARD_W_MM,
-        MARGIN_Y + row * CARD_H_MM,
+        MARGIN_X + col * (CARD_W_MM + GAP_MM),
+        MARGIN_Y + row * (CARD_H_MM + GAP_MM),
         CARD_W_MM,
         CARD_H_MM
       );
@@ -62,8 +65,8 @@ function buildPages(
       pdf.addImage(
         backImage,
         "PNG",
-        MARGIN_X + mirroredCol * CARD_W_MM,
-        MARGIN_Y + row * CARD_H_MM,
+        MARGIN_X + mirroredCol * (CARD_W_MM + GAP_MM),
+        MARGIN_Y + row * (CARD_H_MM + GAP_MM),
         CARD_W_MM,
         CARD_H_MM
       );
