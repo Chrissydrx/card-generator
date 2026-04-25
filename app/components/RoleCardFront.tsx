@@ -3,6 +3,10 @@ import { RoleCard } from "../lib/types";
 const CARD_W = 252;
 const CARD_H = 352;
 
+const CORAL = "#D9654C";
+const CREAM = "#FAF8F5";
+const INK = "#2D2A26";
+
 export default function RoleCardFront({
   card,
   scale = 1,
@@ -21,28 +25,83 @@ export default function RoleCardFront({
           height: CARD_H,
           transform: `scale(${scale})`,
           transformOrigin: "top left",
+          border: `3px solid ${CORAL}`,
+          borderRadius: 14,
+          background: CREAM,
+          display: "flex",
+          flexDirection: "column",
+          overflow: "hidden",
         }}
-        className="absolute rounded-2xl bg-linear-to-br from-pink-500 via-rose-500 to-orange-400 p-[3px]"
       >
-        <div className="flex h-full w-full flex-col items-center rounded-[13px] bg-linear-to-br from-pink-600/90 via-rose-500/90 to-orange-400/90 px-5 py-6 text-white">
-          {/* top ornament */}
-          <div className="mb-1 text-2xl leading-none opacity-70">🎭</div>
-
-          {/* title */}
-          <h3 className="mb-3 text-center font-black text-xl uppercase tracking-widest drop-shadow-md">
+        {/* colored header block */}
+        <div
+          style={{
+            background: CORAL,
+            padding: "20px 20px 16px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <span
+            style={{
+              color: "#fff",
+              fontSize: 17,
+              fontWeight: 900,
+              textTransform: "uppercase",
+              letterSpacing: "0.12em",
+              textAlign: "center",
+              lineHeight: 1.2,
+            }}
+          >
             {card.title || "Neue Rolle"}
-          </h3>
+          </span>
+        </div>
 
-          {/* divider */}
-          <div className="mb-3 h-px w-3/4 bg-white/40" />
-
-          {/* description */}
-          <p className="flex-1 text-center text-sm leading-relaxed font-medium opacity-90">
+        {/* body */}
+        <div
+          style={{
+            flex: 1,
+            padding: "20px 18px 16px",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <p
+            style={{
+              color: INK,
+              fontSize: 13,
+              lineHeight: 1.55,
+              textAlign: "center",
+              fontWeight: 500,
+              margin: 0,
+            }}
+          >
             {card.description || "Beschreibung eingeben..."}
           </p>
+        </div>
 
-          {/* bottom ornament */}
-          <div className="mt-2 text-lg leading-none opacity-50">🍹</div>
+        {/* bottom label */}
+        <div
+          style={{
+            padding: "0 0 10px",
+            textAlign: "center",
+          }}
+        >
+          <span
+            style={{
+              color: CORAL,
+              fontSize: 9,
+              fontWeight: 800,
+              textTransform: "uppercase",
+              letterSpacing: "0.25em",
+              opacity: 0.5,
+            }}
+          >
+            Rolle
+          </span>
         </div>
       </div>
     </div>

@@ -1,6 +1,9 @@
 const CARD_W = 252;
 const CARD_H = 352;
 
+const CORAL = "#D9654C";
+const TEAL = "#2E8C80";
+
 export default function CardBack({
   type,
   scale = 1,
@@ -9,6 +12,7 @@ export default function CardBack({
   scale?: number;
 }) {
   const isRole = type === "role";
+  const color = isRole ? CORAL : TEAL;
 
   return (
     <div
@@ -21,79 +25,51 @@ export default function CardBack({
           height: CARD_H,
           transform: `scale(${scale})`,
           transformOrigin: "top left",
+          borderRadius: 14,
+          background: color,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          position: "relative",
+          overflow: "hidden",
         }}
-        className={`absolute rounded-2xl p-[3px] ${
-          isRole
-            ? "bg-linear-to-br from-pink-500 via-rose-500 to-orange-400"
-            : "bg-linear-to-br from-violet-600 via-indigo-600 to-cyan-500"
-        }`}
       >
+        {/* dot grid pattern */}
         <div
-          className={`flex h-full w-full flex-col items-center justify-center rounded-[13px] ${
-            isRole
-              ? "bg-linear-to-br from-pink-900 via-rose-800 to-orange-900"
-              : "bg-linear-to-br from-violet-900 via-indigo-900 to-cyan-900"
-          }`}
+          style={{
+            position: "absolute",
+            inset: 0,
+            opacity: 0.08,
+            backgroundImage: `radial-gradient(circle, #fff 1.2px, transparent 1.2px)`,
+            backgroundSize: "16px 16px",
+            backgroundPosition: "8px 8px",
+          }}
+        />
+
+        {/* inner frame */}
+        <div
+          style={{
+            position: "absolute",
+            inset: 12,
+            border: "2px solid rgba(255,255,255,0.2)",
+            borderRadius: 8,
+          }}
+        />
+
+        {/* center label */}
+        <span
+          style={{
+            position: "relative",
+            color: "#fff",
+            fontSize: 22,
+            fontWeight: 900,
+            textTransform: "uppercase",
+            letterSpacing: "0.3em",
+          }}
         >
-          {/* diagonal pattern overlay */}
-          <div
-            className="absolute inset-0 rounded-[13px] opacity-[0.07]"
-            style={{
-              backgroundImage: `repeating-linear-gradient(
-                45deg,
-                transparent,
-                transparent 8px,
-                white 8px,
-                white 9px
-              )`,
-            }}
-          />
-
-          {/* center content */}
-          <div className="relative z-10 flex flex-col items-center gap-2">
-            <div className="text-4xl">{isRole ? "🎭" : "🃏"}</div>
-            <div
-              className={`font-black text-2xl uppercase tracking-[0.3em] ${
-                isRole ? "text-pink-300" : "text-cyan-300"
-              }`}
-            >
-              {isRole ? "ROLLE" : "REGEL"}
-            </div>
-            <div className="mt-1 text-xl opacity-60">
-              {isRole ? "🍹" : "🍺"}
-            </div>
-          </div>
-
-          {/* corner ornaments */}
-          <span
-            className={`absolute top-3 left-3 text-xs font-bold opacity-20 ${
-              isRole ? "text-pink-200" : "text-cyan-200"
-            }`}
-          >
-            ✦
-          </span>
-          <span
-            className={`absolute top-3 right-3 text-xs font-bold opacity-20 ${
-              isRole ? "text-pink-200" : "text-cyan-200"
-            }`}
-          >
-            ✦
-          </span>
-          <span
-            className={`absolute bottom-3 left-3 text-xs font-bold opacity-20 ${
-              isRole ? "text-pink-200" : "text-cyan-200"
-            }`}
-          >
-            ✦
-          </span>
-          <span
-            className={`absolute bottom-3 right-3 text-xs font-bold opacity-20 ${
-              isRole ? "text-pink-200" : "text-cyan-200"
-            }`}
-          >
-            ✦
-          </span>
-        </div>
+          {isRole ? "Rolle" : "Regel"}
+        </span>
       </div>
     </div>
   );

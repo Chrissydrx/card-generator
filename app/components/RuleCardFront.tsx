@@ -3,6 +3,10 @@ import { RuleCard } from "../lib/types";
 const CARD_W = 252;
 const CARD_H = 352;
 
+const TEAL = "#2E8C80";
+const CREAM = "#FAF8F5";
+const INK = "#2D2A26";
+
 export default function RuleCardFront({
   card,
   index,
@@ -23,25 +27,85 @@ export default function RuleCardFront({
           height: CARD_H,
           transform: `scale(${scale})`,
           transformOrigin: "top left",
+          border: `3px solid ${TEAL}`,
+          borderRadius: 14,
+          background: CREAM,
+          display: "flex",
+          flexDirection: "column",
+          overflow: "hidden",
         }}
-        className="absolute rounded-2xl bg-linear-to-br from-violet-600 via-indigo-600 to-cyan-500 p-[3px]"
       >
-        <div className="relative flex h-full w-full flex-col items-center justify-center rounded-[13px] bg-linear-to-br from-violet-700/90 via-indigo-600/90 to-cyan-500/90 px-5 py-6 text-white">
-          {/* card number */}
-          <span className="absolute top-3 right-4 font-black text-xs opacity-40">
+        {/* colored top bar */}
+        <div
+          style={{
+            background: TEAL,
+            height: 6,
+            flexShrink: 0,
+          }}
+        />
+
+        {/* card number */}
+        <div
+          style={{
+            padding: "12px 16px 0",
+            textAlign: "right",
+          }}
+        >
+          <span
+            style={{
+              color: TEAL,
+              fontSize: 12,
+              fontWeight: 800,
+              opacity: 0.45,
+            }}
+          >
             #{index + 1}
           </span>
+        </div>
 
-          {/* top ornament */}
-          <div className="mb-3 text-2xl leading-none opacity-70">🃏</div>
-
-          {/* rule text */}
-          <p className="flex-1 flex items-center text-center text-base leading-relaxed font-bold">
+        {/* rule text */}
+        <div
+          style={{
+            flex: 1,
+            padding: "8px 22px 16px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <p
+            style={{
+              color: INK,
+              fontSize: 14,
+              lineHeight: 1.55,
+              textAlign: "center",
+              fontWeight: 600,
+              margin: 0,
+            }}
+          >
             {card.text || "Regel eingeben..."}
           </p>
+        </div>
 
-          {/* bottom ornament */}
-          <div className="mt-2 text-lg leading-none opacity-50">🍺</div>
+        {/* bottom label */}
+        <div
+          style={{
+            padding: "0 0 10px",
+            textAlign: "center",
+          }}
+        >
+          <span
+            style={{
+              color: TEAL,
+              fontSize: 9,
+              fontWeight: 800,
+              textTransform: "uppercase",
+              letterSpacing: "0.25em",
+              opacity: 0.5,
+            }}
+          >
+            Regel
+          </span>
         </div>
       </div>
     </div>
