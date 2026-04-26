@@ -30,42 +30,49 @@ export default function CardBack({
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          justifyContent: "center",
+          justifyContent: "space-between",
           position: "relative",
           overflow: "hidden",
+          padding: "10px 10px 8px",
         }}
       >
-        {/* dot grid pattern */}
         <div
           style={{
-            position: "absolute",
-            inset: 0,
-            opacity: 0.08,
-            backgroundImage: `radial-gradient(circle, #fff 1.2px, transparent 1.2px)`,
-            backgroundSize: "16px 16px",
-            backgroundPosition: "8px 8px",
+            flex: 1,
+            width: "100%",
+            minHeight: 0,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
           }}
-        />
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element -- html2canvas PDF export needs a plain img */}
+          <img
+            src="/image.png"
+            alt=""
+            width={220}
+            height={280}
+            style={{
+              maxWidth: "100%",
+              maxHeight: 280,
+              width: "auto",
+              height: "auto",
+              objectFit: "contain",
+              objectPosition: "center",
+            }}
+            draggable={false}
+          />
+        </div>
 
-        {/* inner frame */}
-        <div
-          style={{
-            position: "absolute",
-            inset: 12,
-            border: "2px solid rgba(255,255,255,0.2)",
-            borderRadius: 8,
-          }}
-        />
-
-        {/* center label */}
         <span
           style={{
-            position: "relative",
-            color: "#fff",
-            fontSize: 22,
-            fontWeight: 900,
+            color: "rgba(255,255,255,0.95)",
+            fontSize: 10,
+            fontWeight: 800,
             textTransform: "uppercase",
-            letterSpacing: "0.3em",
+            letterSpacing: "0.2em",
+            marginTop: 6,
+            flexShrink: 0,
           }}
         >
           {isRole ? "Rolle" : "Regel"}
